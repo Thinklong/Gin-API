@@ -1,0 +1,44 @@
+listen:
+  addr: 127.0.0.1
+  port: ":8092"
+  read_timeout: 10
+  write_timeout: 10
+  max_header_bytes: 20
+ws:
+  port: ":8091"
+  read_timeout: 10
+  write_timeout: 10
+  max_header_bytes: 20
+log:
+  handlerStd: true
+  handlerFile: false
+  fileDir: logs
+  level: debug
+gcache:
+  size: 5
+  expire: 7200
+mysql:
+  host: 127.0.0.1:3306
+  user: test
+  pass: 
+  db: test
+  maxIdleConns: 80
+  maxOpenConns: 80
+  maxLifeTime: 0
+  debug: false
+redis:
+  host: 127.0.0.1:6379
+  pass: 
+  db: 1
+  db_prefix: ""
+  poolSize: 100
+  minIdleConns: 10
+  expiration: 28800
+  debug: false
+rocketmq:
+  host: 127.0.0.1:9876
+  access_key: ""
+  secret_key: ""
+  user_channel: ALIYUN
+gin:
+  debug_mode: "debug"

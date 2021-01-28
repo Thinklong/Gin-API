@@ -1,0 +1,293 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "go-gin-api docs api",
+        "contact": {}
+    },
+    "host": "127.0.0.1:9999",
+    "paths": {
+        "/demo/user/{name}": {
+            "get": {
+                "description": "获取用户信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "获取用户信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户名(Tom)",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "签名",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "用户信息",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "job": {
+                                        "description": "工作",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "用户名",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/create": {
+            "post": {
+                "description": "创建用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "创建用户",
+                "parameters": [
+                    {
+                        "description": "请求信息",
+                        "name": "RequestInfo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user_model.CreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回信息",
+                        "schema": {
+                            "$ref": "#/definitions/user_model.CreateResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/info/{username}": {
+            "get": {
+                "description": "用户详情",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "用户详情",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户名",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回信息",
+                        "schema": {
+                            "$ref": "#/definitions/user_model.DetailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "description": "用户登录",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "用户登录",
+                "parameters": [
+                    {
+                        "description": "请求信息",
+                        "name": "RequestInfo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user_model.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回信息",
+                        "schema": {
+                            "$ref": "#/definitions/user_model.LoginResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/update": {
+            "post": {
+                "description": "更新用户名称",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "更新用户名称",
+                "parameters": [
+                    {
+                        "description": "请求信息",
+                        "name": "RequestInfo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user_model.UpdateNickNameByIDRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回信息",
+                        "schema": {
+                            "$ref": "#/definitions/user_model.UpdateNickNameByIDResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "user_model.CreateRequest": {
+            "type": "object",
+            "properties": {
+                "mobile": {
+                    "description": "手机号",
+                    "type": "string"
+                },
+                "nick_name": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "user_name": {
+                    "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "user_model.CreateResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "主键ID",
+                    "type": "integer"
+                }
+            }
+        },
+        "user_model.DetailResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "用户主键ID",
+                    "type": "integer"
+                },
+                "mobile": {
+                    "description": "手机号",
+                    "type": "string"
+                },
+                "nick_name": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "user_name": {
+                    "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "user_model.LoginRequest": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "description": "用户ID（\u003e0）",
+                    "type": "integer"
+                },
+                "user_name": {
+                    "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "user_model.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "authorization": {
+                    "description": "签名",
+                    "type": "string"
+                },
+                "expire_time": {
+                    "description": "过期时间",
+                    "type": "integer"
+                }
+            }
+        },
+        "user_model.UpdateNickNameByIDRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "用户主键ID",
+                    "type": "integer"
+                },
+                "nick_name": {
+                    "description": "昵称",
+                    "type": "string"
+                }
+            }
+        },
+        "user_model.UpdateNickNameByIDResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "用户主键ID",
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

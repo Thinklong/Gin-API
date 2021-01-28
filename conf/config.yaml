@@ -1,0 +1,58 @@
+project:
+  name: "gin-api"
+listen:
+  addr: 127.0.0.1
+  port: ":8888"
+  read_timeout: 10
+  write_timeout: 10
+  max_header_bytes: 20
+ws:
+  port: ":8091"
+  read_timeout: 10
+  write_timeout: 10
+  max_header_bytes: 20
+jwt:
+  secret: "i1ydX9RtHyuJTrw7frcs"
+log:
+  handlerStd: true
+  handlerFile: false
+  fileDir: logs
+  level: debug
+gcache:
+  size: 5
+  expire: 7200
+mysql:
+  read:
+    host: 127.0.0.1
+    port: 3306
+    user: root
+    pass: root
+    db: gin-api
+  write:
+    host: 127.0.0.1
+    port: 3306
+    user: root
+    pass: root
+    db: gin-api
+  base:
+    maxOpenConn: 10
+    maxIdleConn: 60
+    connMaxLifeTime: 60
+    debug: false
+redis:
+  host: 127.0.0.1:6379
+  pass: ""
+  db: 0
+  db_prefix: "gin-api:"
+  maxRetries: 3
+  poolSize: 100
+  minIdleConns: 10
+  expiration: 28800
+  debug: false
+rocketmq:
+  host: 127.0.0.1:9876
+  access_key: ""
+  secret_key: ""
+  user_channel: ALIYUN
+gin:
+  debug_mode: "debug"
